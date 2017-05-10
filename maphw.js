@@ -1,3 +1,4 @@
+var map;
 function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
         var map = new google.maps.Map($('#map')[0], {
@@ -10,6 +11,34 @@ function initMap() {
         });
       }
 
+function newLocation(newLat,newLng)
+{
+	map.setCenter({
+		lat : newLat,
+		lng : newLng
+	});
+}
+
+
+//Setting Location with jQuery
+$(document).ready(function ()
+{
+    $("#greece").on('click', function ()
+    {
+	  newLocation(48.1293954,11.556663);
+	});
+  
+	$("#spaceneedle").on('click', function ()
+    {
+	  newLocation(40.7033127,-73.979681);
+	});
+  
+    $("#eiffel").on('click', function ()
+    {
+	  newLocation(55.749792,37.632495);
+	});
+});
+/*
 $(".places").click(function travelWorld(event){
         var spaceneedle = {lat: 47.6205, lng: -122.3493 };
         var map = new google.maps.Map($('#map')[0], {
@@ -20,21 +49,31 @@ $(".places").click(function travelWorld(event){
           position: spaceneedle,
           map: map
         });
-event.preventDefault();
+
 })
 
 
+
+$('#greece').click(function(evt) {
+  var coordsStr = $(this).parents().find(".coords").html();
+  var coords = coordsStr.split(",");
+  var point = new google.maps.LatLng(coords[0], coords[1]);
+  map.setCenter(point);
+});
+
 /*
-	$("#greece").on('click', function ()
+
+	$("#greece").on('click', function travelWorld()
     {
 	  newLocation(39.0742,21.8243 );
 	});
   
-    $("#eiffel").on('click', function ()
+    $("#eiffel").on('click', function travelWorld()
     {
 	  newLocation(48.8584,2.2945);
 	});
-});
+    event.preventDefault();
+
                 
      /*                     
 //Setting Location with jQuery
