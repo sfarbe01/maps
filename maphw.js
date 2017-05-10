@@ -21,7 +21,7 @@ function newLocation(newLat,newLng)
 
 
 //Setting Location with jQuery
-$(document).ready(function ()
+$(document).ready(function newLocation()
 {
     $("#greece").on('click', function ()
     {
