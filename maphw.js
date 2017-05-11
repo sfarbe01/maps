@@ -18,14 +18,12 @@ var locations = [
      "zoom": 12
  }];
 
-
-
 var map;
+
 function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map($('#map')[0], {
-          zoom: 4,
-          center: uluru
+       map = new google.maps.Map($('#map')[0], {
+        center: {lat: -25.363, lng: 131.044},    
+        zoom: 4
         });
         createMarkers();
       }
@@ -55,7 +53,7 @@ function changeCenter() {
 	})[0];
 
 	if(location) {
-		map.setCenter({lat: location.lat, lng: location.lng});
+        map.setCenter({lat: location.lat, lng: location.lng});
 		map.setZoom(location.zoom);	
 	}
 	
