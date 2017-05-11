@@ -1,6 +1,6 @@
 var locations = [
  {
-     "name": "Greece",
+     "name": "Parthenon",
      "lat": 37.9715,
      "lng": 23.72673,
      "zoom": 12
@@ -22,7 +22,7 @@ var map;
 
 function initMap() {
        map = new google.maps.Map($('#map')[0], {
-        center: {lat: -25.363, lng: 131.044},    
+        center: {lat: 19.8968, lng: -155.5828},    
         zoom: 4
         });
         createMarkers();
