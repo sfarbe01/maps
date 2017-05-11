@@ -1,3 +1,25 @@
+var locations = [
+ {
+     "name": "Greece",
+     "lat": 48.1293954,
+     "lng": 11.556663,
+     "zoom": 12
+ },
+ {
+     "name": "Space Needle",
+     "lat": 40.7033127,
+     "lng": -73.979681,
+     "zoom": 12
+ },
+ {
+     "name": "Eiffel Tower",
+     "lat": 55.749792,
+     "lng": 37.632495,
+     "zoom": 12
+ }];
+
+
+
 var map;
 function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
@@ -5,98 +27,36 @@ function initMap() {
           zoom: 4,
           center: uluru
         });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
+        createMarkers();
       }
 
-function newLocation(newLat,newLng)
-{
-	map.setCenter({
-		lat : newLat,
-		lng : newLng
+function createMarkers() {
+	$.each(locations, function (index, value) {
+		var marker = new google.maps.Marker({
+        	position: { lat: value.lat, lng: value.lng }});
+		
+		marker.setMap(map);
+
+		var infoWindow = new google.maps.InfoWindow({
+        	content: value.name });
+	
+		marker.addListener( 'click', function( ) {
+        	infoWindow.open( map, marker );
+        });
 	});
 }
 
+$('#locales').on('change', changeCenter);
 
-//Setting Location with jQuery
-$(document).ready(function newLocation()
-{
-    $("#greece").on('click', function ()
-    {
-	  newLocation(48.1293954,11.556663);
-	});
-  
-	$("#spaceneedle").on('click', function ()
-    {
-	  newLocation(40.7033127,-73.979681);
-	});
-  
-    $("#eiffel").on('click', function ()
-    {
-	  newLocation(55.749792,37.632495);
-	});
-});
-/*
-$(".places").click(function travelWorld(event){
-        var spaceneedle = {lat: 47.6205, lng: -122.3493 };
-        var map = new google.maps.Map($('#map')[0], {
-          zoom: 4,
-          center: spaceneedle
-        });
-        var marker = new google.maps.Marker({
-          position: spaceneedle,
-          map: map
-        });
+function changeCenter() {
+	var place = $(this).val();
+	var location = $.grep(locations, function (n, i) {
+		return n.name == place;
+	})[0];
 
-})
-
-
-
-$('#greece').click(function(evt) {
-  var coordsStr = $(this).parents().find(".coords").html();
-  var coords = coordsStr.split(",");
-  var point = new google.maps.LatLng(coords[0], coords[1]);
-  map.setCenter(point);
-});
-
-/*
-
-	$("#greece").on('click', function travelWorld()
-    {
-	  newLocation(39.0742,21.8243 );
-	});
-  
-    $("#eiffel").on('click', function travelWorld()
-    {
-	  newLocation(48.8584,2.2945);
-	});
-    event.preventDefault();
-
-                
-     /*                     
-//Setting Location with jQuery
-$(document).ready(function travelWorld()
-{
-    $("#spaceneedle").click(function(event){
-        var center = new google.maps.LatLng(10.23,123.45);
-        map.panTo(center);
-	});
-
-	$("#greece").on('click', function ()
-    {
-	  newLocation(39.0742,21.8243 );
-	});
-  
-    $("#eiffel").on('click', function ()
-    {
-	  newLocation(48.8584,2.2945);
-	});
-});
-
-function (travelWorld) {
-   $("#spaceneedle").on('click', function ()
-    {  
-}                        
-                        */
+	if(location) {
+		map.setCenter({lat: location.lat, lng: location.lng});
+		map.setZoom(location.zoom);	
+	}
+	
+}
