@@ -1,20 +1,20 @@
 var locations = [
  {
      "name": "Greece",
-     "lat": 48.1293954,
-     "lng": 11.556663,
+     "lat": 37.9715,
+     "lng": 23.72673,
      "zoom": 12
  },
  {
      "name": "Space Needle",
-     "lat": 40.7033127,
-     "lng": -73.979681,
+     "lat": 47.6205,
+     "lng": -122.3493,
      "zoom": 12
  },
  {
      "name": "Eiffel Tower",
-     "lat": 55.749792,
-     "lng": 37.632495,
+     "lat": 48.8584,
+     "lng": 2.2945,
      "zoom": 12
  }];
 
